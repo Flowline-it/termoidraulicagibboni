@@ -1,0 +1,13 @@
+{
+  "name": "pocketbase-app",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "download": "node scripts/pocketbase.mjs download",
+    "dev": "node scripts/pocketbase.mjs dev",
+    "start": "node scripts/pocketbase.mjs start",
+    "pb": "node scripts/pocketbase.mjs",
+    "reset": "node -e \"require('fs').rmSync('pb_data',{recursive:true,force:true})\" && echo Database locale azzerato"
+  }
+}

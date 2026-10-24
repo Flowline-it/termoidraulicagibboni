@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Zilla+Slab:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Archivo", sans-serif;
+  overflow-x: clip;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+.font-display {
+  font-family: "Zilla Slab", serif;
+}
+
+.font-mono {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/*
+  ---break---
+*/
+
+@layer base {
+  :root {
+    --background: 40 9% 96%;
+    --foreground: 216 52% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 216 52% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 52% 13%;
+    --primary: 216 58% 20%;
+    --primary-foreground: 40 25% 97%;
+    --secondary: 40 6% 90%;
+    --secondary-foreground: 216 52% 13%;
+    --muted: 40 6% 91%;
+    --muted-foreground: 216 10% 42%;
+    --accent: 22 95% 48%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 40 6% 84%;
+    --input: 40 6% 80%;
+    --ring: 22 95% 48%;
+    --radius: 0.25rem;
+    --brand: 22 95% 48%;
+    --brand-foreground: 0 0% 100%;
+    --navy: 216 58% 16%;
+    --navy-foreground: 40 25% 96%;
+    --sidebar-background: 216 58% 16%;
+    --sidebar-foreground: 40 10% 70%;
+    --sidebar-primary: 22 95% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 216 40% 24%;
+    --sidebar-accent-foreground: 40 25% 96%;
+    --sidebar-border: 216 40% 26%;
+    --sidebar-ring: 22 95% 48%;
+  }
+  .dark {
+    --background: 216 40% 10%;
+    --foreground: 40 20% 94%;
+    --card: 216 38% 13%;
+    --card-foreground: 40 20% 94%;
+    --popover: 216 38% 13%;
+    --popover-foreground: 40 20% 94%;
+    --primary: 40 25% 96%;
+    --primary-foreground: 216 58% 16%;
+    --secondary: 216 30% 20%;
+    --secondary-foreground: 40 20% 94%;
+    --muted: 216 30% 20%;
+    --muted-foreground: 216 12% 62%;
+    --accent: 22 95% 52%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 40%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 216 28% 22%;
+    --input: 216 28% 26%;
+    --ring: 22 95% 52%;
+    --sidebar-background: 216 50% 12%;
+    --sidebar-foreground: 40 10% 70%;
+    --sidebar-primary: 22 95% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 216 40% 22%;
+    --sidebar-accent-foreground: 40 25% 96%;
+    --sidebar-border: 216 40% 24%;
+    --sidebar-ring: 22 95% 48%;
+  }
+}

@@ -1,17 +1,21 @@
 {
-  "name": "monorepo",
-  "version": "0.0.0",
+  "name": "gestionale-gibboni",
+  "version": "0.1.0",
   "private": true,
+  "description": "Flowline — Gestionale Termoidraulica Gibboni (React + Vite + PocketBase)",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "setup": "npm install",
-    "dev": "concurrently --kill-others --raw \"npm run dev --prefix apps/web\" \"npm run dev --prefix apps/pocketbase\"",
-    "build": "concurrently --raw \"npm run build --prefix apps/web\"",
-    "start": "concurrently --kill-others --raw \"npm run start --prefix apps/pocketbase\"",
-    "lint": "concurrently --raw \"npm run lint --prefix apps/web\""
+    "setup": "npm install && npm run download --prefix apps/pocketbase",
+    "dev": "concurrently --kill-others --names web,db --prefix-colors cyan,magenta \"npm run dev --prefix apps/web\" \"npm run dev --prefix apps/pocketbase\"",
+    "build": "npm run build --prefix apps/web",
+    "start": "npm run build && npm run start --prefix apps/pocketbase",
+    "lint": "npm run lint --prefix apps/web",
+    "db:reset": "npm run reset --prefix apps/pocketbase"
   },
   "devDependencies": {
-    "concurrently": "^10.0.6",
-    "knip": "^6.32.1"
+    "concurrently": "^10.0.6"
   },
   "workspaces": [
     "apps/*"

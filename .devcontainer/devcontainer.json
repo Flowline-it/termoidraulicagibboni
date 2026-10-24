@@ -1,0 +1,33 @@
+{
+  "name": "Gestionale Gibboni",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+  "hostRequirements": {
+    "cpus": 2
+  },
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Gestionale",
+      "onAutoForward": "openBrowser"
+    },
+    "8090": {
+      "label": "PocketBase (interno)",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": "npm run setup",
+  "postAttachCommand": {
+    "app": "npm run dev"
+  },
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["README.md"]
+    },
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  }
+}
