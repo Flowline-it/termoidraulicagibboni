@@ -177,7 +177,7 @@ const DashboardPage = () => {
             </Link>
           </div>
 
-          <div className="grid gap-8 lg:grid-cols-2">
+          <div className="grid gap-8 lg:grid-cols-2 [&>*]:min-w-0">
             {/* Scadenze imminenti */}
             <section>
               <SectionTitle icon={CalendarClock} to="/scadenzario">

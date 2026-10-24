@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { inputCls, Field } from '@/components/FormBits';
 import { Button } from '@/components/ui/button';
+import { IS_DEMO } from '@/lib/pocketbaseClient';
+import { DEMO_USERS } from '@/demo/users';
 
 const LoginPage = () => {
   const { login } = useAuth();
@@ -99,9 +101,33 @@ const LoginPage = () => {
             </form>
           </div>
 
-          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-white/40">
-            Ruoli: titolare · amministrazione · tecnico
-          </p>
+          {IS_DEMO ? (
+            <div className="mt-6">
+              <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.18em] text-white/60">
+                Anteprima · entra con un profilo di prova
+              </p>
+              <div className="grid grid-cols-3 gap-2">
+                {DEMO_USERS.map((u) => (
+                  <button
+                    key={u.email}
+                    type="button"
+                    onClick={() => {
+                      setEmail(u.email);
+                      setPassword(u.password);
+                      setError('');
+                    }}
+                    className="rounded-sm border border-white/25 px-2 py-2 text-sm font-medium text-white hover:border-accent hover:bg-white/5"
+                  >
+                    {u.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-white/40">
+              Ruoli: titolare · amministrazione · tecnico
+            </p>
+          )}
         </div>
       </div>
     </div>

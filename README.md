@@ -9,6 +9,16 @@ Il binario di PocketBase **non** è nel repository: viene scaricato da solo dall
 
 ---
 
+## Anteprima online (GitHub Pages)
+
+**https://flowline-it.github.io/termoidraulicagibboni/**
+
+Versione dimostrativa da mostrare al cliente: gira interamente nel browser, senza server. I dati demo vengono caricati al primo accesso con le date allineate a oggi; ogni visitatore vede la propria copia e le modifiche restano solo sul suo dispositivo (pulsante "Ripristina dati demo" in alto per ripartire da zero). Nella pagina di accesso ci sono i pulsanti per entrare come Titolare, Ufficio o Tecnico.
+
+Si aggiorna da sola a ogni push su `main` (workflow `Demo su GitHub Pages`). Requisito, da impostare una volta: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+Per provarla in locale: `npm run build:demo --prefix apps/web`. Il codice della modalità demo è in `apps/web/src/demo/` (`seed.json` è esportato dalle migrazioni PocketBase).
+
 ## Avvio con un clic da GitHub (Codespaces)
 
 1. Sulla pagina del repository: **Code → Codespaces → Create codespace on main**.

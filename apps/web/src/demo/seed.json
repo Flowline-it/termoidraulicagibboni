@@ -1,0 +1,1784 @@
+{
+ "anchor": "2026-09-09",
+ "schema": {
+  "users": {
+   "id": {
+    "type": "text"
+   },
+   "email": {
+    "type": "email"
+   },
+   "emailVisibility": {
+    "type": "bool"
+   },
+   "verified": {
+    "type": "bool"
+   },
+   "name": {
+    "type": "text"
+   },
+   "avatar": {
+    "type": "file",
+    "multi": false
+   },
+   "created": {
+    "type": "autodate"
+   },
+   "updated": {
+    "type": "autodate"
+   },
+   "role": {
+    "type": "select",
+    "multi": false,
+    "values": [
+     "titolare",
+     "amministrazione",
+     "tecnico"
+    ]
+   }
+  },
+  "clienti": {
+   "id": {
+    "type": "text"
+   },
+   "nome": {
+    "type": "text"
+   },
+   "tipo": {
+    "type": "select",
+    "multi": false,
+    "values": [
+     "privato",
+     "azienda",
+     "condominio"
+    ]
+   },
+   "telefono": {
+    "type": "text"
+   },
+   "email": {
+    "type": "text"
+   },
+   "indirizzo": {
+    "type": "text"
+   },
+   "citta": {
+    "type": "text"
+   },
+   "cap": {
+    "type": "text"
+   },
+   "referente": {
+    "type": "text"
+   },
+   "note": {
+    "type": "text"
+   },
+   "created": {
+    "type": "autodate"
+   },
+   "updated": {
+    "type": "autodate"
+   }
+  },
+  "impianti": {
+   "id": {
+    "type": "text"
+   },
+   "cliente": {
+    "type": "relation",
+    "collection": "clienti",
+    "multi": false,
+    "cascade": true,
+    "required": true
+   },
+   "tipo": {
+    "type": "select",
+    "multi": false,
+    "values": [
+     "caldaia",
+     "caldaia_condominiale",
+     "climatizzatore",
+     "pompa_di_calore",
+     "scaldacqua",
+     "altro"
+    ]
+   },
+   "marca": {
+    "type": "text"
+   },
+   "modello": {
+    "type": "text"
+   },
+   "matricola": {
+    "type": "text"
+   },
+   "indirizzo_installazione": {
+    "type": "text"
+   },
+   "data_posa": {
+    "type": "date"
+   },
+   "ultimo_intervento": {
+    "type": "date"
+   },
+   "scadenza_controllo": {
+    "type": "date"
+   },
+   "scadenza_bollino": {
+    "type": "date"
+   },
+   "potenza_kw": {
+    "type": "number"
+   },
+   "note": {
+    "type": "text"
+   },
+   "created": {
+    "type": "autodate"
+   },
+   "updated": {
+    "type": "autodate"
+   }
+  },
+  "chiamate": {
+   "id": {
+    "type": "text"
+   },
+   "cliente": {
+    "type": "relation",
+    "collection": "clienti",
+    "multi": false,
+    "cascade": true,
+    "required": true
+   },
+   "impianto": {
+    "type": "relation",
+    "collection": "impianti",
+    "multi": false,
+    "cascade": false,
+    "required": false
+   },
+   "tipo_scadenza": {
+    "type": "select",
+    "multi": false,
+    "values": [
+     "controllo",
+     "bollino"
+    ]
+   },
+   "data_scadenza": {
+    "type": "date"
+   },
+   "stato": {
+    "type": "select",
+    "multi": false,
+    "values": [
+     "da_chiamare",
+     "contattato",
+     "appuntamento_fissato",
+     "eseguito"
+    ]
+   },
+   "priorita": {
+    "type": "select",
+    "multi": false,
+    "values": [
+     "alta",
+     "media",
+     "bassa"
+    ]
+   },
+   "data_contatto": {
+    "type": "date"
+   },
+   "note": {
+    "type": "text"
+   },
+   "created": {
+    "type": "autodate"
+   },
+   "updated": {
+    "type": "autodate"
+   }
+  },
+  "commesse": {
+   "id": {
+    "type": "text"
+   },
+   "codice": {
+    "type": "text"
+   },
+   "titolo": {
+    "type": "text"
+   },
+   "cliente": {
+    "type": "relation",
+    "collection": "clienti",
+    "multi": false,
+    "cascade": false,
+    "required": true
+   },
+   "impianto": {
+    "type": "relation",
+    "collection": "impianti",
+    "multi": false,
+    "cascade": false,
+    "required": false
+   },
+   "stato": {
+    "type": "select",
+    "multi": false,
+    "values": [
+     "aperta",
+     "in_corso",
+     "sospesa",
+     "completata",
+     "chiusa"
+    ]
+   },
+   "avanzamento": {
+    "type": "number"
+   },
+   "data_apertura": {
+    "type": "date"
+   },
+   "data_chiusura": {
+    "type": "date"
+   },
+   "descrizione": {
+    "type": "text"
+   },
+   "created": {
+    "type": "autodate"
+   },
+   "updated": {
+    "type": "autodate"
+   }
+  },
+  "interventi": {
+   "id": {
+    "type": "text"
+   },
+   "commessa": {
+    "type": "relation",
+    "collection": "commesse",
+    "multi": false,
+    "cascade": false,
+    "required": false
+   },
+   "cliente": {
+    "type": "relation",
+    "collection": "clienti",
+    "multi": false,
+    "cascade": false,
+    "required": true
+   },
+   "impianto": {
+    "type": "relation",
+    "collection": "impianti",
+    "multi": false,
+    "cascade": false,
+    "required": false
+   },
+   "tecnico": {
+    "type": "relation",
+    "collection": "users",
+    "multi": false,
+    "cascade": false,
+    "required": false
+   },
+   "data": {
+    "type": "date"
+   },
+   "ora": {
+    "type": "text"
+   },
+   "tipo": {
+    "type": "select",
+    "multi": false,
+    "values": [
+     "sopralluogo",
+     "manutenzione",
+     "controllo_periodico",
+     "installazione",
+     "riparazione"
+    ]
+   },
+   "stato": {
+    "type": "select",
+    "multi": false,
+    "values": [
+     "programmato",
+     "in_corso",
+     "completato",
+     "annullato"
+    ]
+   },
+   "note": {
+    "type": "text"
+   },
+   "created": {
+    "type": "autodate"
+   },
+   "updated": {
+    "type": "autodate"
+   }
+  },
+  "rapportini": {
+   "id": {
+    "type": "text"
+   },
+   "numero": {
+    "type": "text"
+   },
+   "intervento": {
+    "type": "relation",
+    "collection": "interventi",
+    "multi": false,
+    "cascade": false,
+    "required": false
+   },
+   "cliente": {
+    "type": "relation",
+    "collection": "clienti",
+    "multi": false,
+    "cascade": false,
+    "required": true
+   },
+   "impianto": {
+    "type": "relation",
+    "collection": "impianti",
+    "multi": false,
+    "cascade": false,
+    "required": false
+   },
+   "tecnico": {
+    "type": "relation",
+    "collection": "users",
+    "multi": false,
+    "cascade": false,
+    "required": false
+   },
+   "data": {
+    "type": "date"
+   },
+   "tipo_intervento": {
+    "type": "select",
+    "multi": false,
+    "values": [
+     "controllo_periodico",
+     "manutenzione_ordinaria",
+     "riparazione",
+     "sopralluogo",
+     "bollino"
+    ]
+   },
+   "descrizione": {
+    "type": "text"
+   },
+   "importo": {
+    "type": "number"
+   },
+   "pagamento": {
+    "type": "select",
+    "multi": false,
+    "values": [
+     "contanti",
+     "pos",
+     "bonifico",
+     "assegno",
+     "da_incassare"
+    ]
+   },
+   "stato": {
+    "type": "select",
+    "multi": false,
+    "values": [
+     "bozza",
+     "chiuso",
+     "inviato_ufficio",
+     "fatturato"
+    ]
+   },
+   "created": {
+    "type": "autodate"
+   },
+   "updated": {
+    "type": "autodate"
+   }
+  },
+  "documenti": {
+   "id": {
+    "type": "text"
+   },
+   "titolo": {
+    "type": "text"
+   },
+   "tipo": {
+    "type": "select",
+    "multi": false,
+    "values": [
+     "rapportino",
+     "foto",
+     "bollino",
+     "certificato",
+     "contratto",
+     "libretto",
+     "altro"
+    ]
+   },
+   "cliente": {
+    "type": "relation",
+    "collection": "clienti",
+    "multi": false,
+    "cascade": false,
+    "required": false
+   },
+   "impianto": {
+    "type": "relation",
+    "collection": "impianti",
+    "multi": false,
+    "cascade": false,
+    "required": false
+   },
+   "commessa": {
+    "type": "relation",
+    "collection": "commesse",
+    "multi": false,
+    "cascade": false,
+    "required": false
+   },
+   "file": {
+    "type": "file",
+    "multi": false
+   },
+   "data": {
+    "type": "date"
+   },
+   "note": {
+    "type": "text"
+   },
+   "created": {
+    "type": "autodate"
+   },
+   "updated": {
+    "type": "autodate"
+   }
+  },
+  "documenti_richiesti": {
+   "id": {
+    "type": "text"
+   },
+   "commessa": {
+    "type": "relation",
+    "collection": "commesse",
+    "multi": false,
+    "cascade": true,
+    "required": true
+   },
+   "intervento": {
+    "type": "relation",
+    "collection": "interventi",
+    "multi": false,
+    "cascade": false,
+    "required": false
+   },
+   "nome": {
+    "type": "text"
+   },
+   "stato": {
+    "type": "select",
+    "multi": false,
+    "values": [
+     "da_richiedere",
+     "richiesto",
+     "ricevuto"
+    ]
+   },
+   "note": {
+    "type": "text"
+   },
+   "created": {
+    "type": "autodate"
+   },
+   "updated": {
+    "type": "autodate"
+   }
+  }
+ },
+ "records": {
+  "users": [
+   {
+    "avatar": "",
+    "collectionName": "users",
+    "created": "2026-10-24 13:27:11.743Z",
+    "email": "titolare@gibboni.it",
+    "id": "abai3esid6kz6p5",
+    "name": "Giuseppe Gibboni",
+    "role": "titolare",
+    "updated": "2026-10-24 13:27:11.743Z"
+   },
+   {
+    "avatar": "",
+    "collectionName": "users",
+    "created": "2026-10-24 13:27:11.821Z",
+    "email": "ufficio@gibboni.it",
+    "id": "4v1jx3gs01gmmcn",
+    "name": "Sara Gibboni",
+    "role": "amministrazione",
+    "updated": "2026-10-24 13:27:11.821Z"
+   },
+   {
+    "avatar": "",
+    "collectionName": "users",
+    "created": "2026-10-24 13:27:11.890Z",
+    "email": "marco.rossi@gibboni.it",
+    "id": "uw8ix881fty6m16",
+    "name": "Marco Rossi",
+    "role": "tecnico",
+    "updated": "2026-10-24 13:27:11.890Z"
+   },
+   {
+    "avatar": "",
+    "collectionName": "users",
+    "created": "2026-10-24 13:27:11.957Z",
+    "email": "luca.bianchi@gibboni.it",
+    "id": "ay07hs8thcpyr2z",
+    "name": "Luca Bianchi",
+    "role": "tecnico",
+    "updated": "2026-10-24 13:27:11.957Z"
+   }
+  ],
+  "clienti": [
+   {
+    "cap": "30035",
+    "citta": "Mirano",
+    "collectionName": "clienti",
+    "created": "2026-10-24 13:27:11.959Z",
+    "email": "amministrazione@studiofabbri.ve.it",
+    "id": "p5cfwuahk6phpmm",
+    "indirizzo": "Via Roma 12",
+    "nome": "Condominio Via Roma 12",
+    "note": "Centrale termica a servizio di 18 unità. Accesso locale caldaia concordato con il portinaio.",
+    "referente": "Rag. Franco Fabbri (amministratore)",
+    "telefono": "041 210 4471",
+    "tipo": "condominio",
+    "updated": "2026-10-24 13:27:11.959Z"
+   },
+   {
+    "cap": "30126",
+    "citta": "Venezia Lido",
+    "collectionName": "clienti",
+    "created": "2026-10-24 13:27:11.959Z",
+    "email": "direzione@hotelbelvedere.ve.it",
+    "id": "d923ggbkovovfvh",
+    "indirizzo": "Gran Viale Santa Maria Elisabetta 27",
+    "nome": "Hotel Belvedere S.r.l.",
+    "note": "Contratto di manutenzione programmata attivo. Interventi preferibilmente al mattino.",
+    "referente": "Sig.ra Elena Torri (direttrice)",
+    "telefono": "041 402 118",
+    "tipo": "azienda",
+    "updated": "2026-10-24 13:27:11.959Z"
+   },
+   {
+    "cap": "30174",
+    "citta": "Mestre",
+    "collectionName": "clienti",
+    "created": "2026-10-24 13:27:11.959Z",
+    "email": "roberto.colombo@libero.it",
+    "id": "ygcszj9fkzer7r2",
+    "indirizzo": "Via Miranese 84",
+    "nome": "Famiglia Colombo",
+    "note": "",
+    "referente": "Sig. Roberto Colombo",
+    "telefono": "348 221 9045",
+    "tipo": "privato",
+    "updated": "2026-10-24 13:27:11.959Z"
+   },
+   {
+    "cap": "30015",
+    "citta": "Chioggia",
+    "collectionName": "clienti",
+    "created": "2026-10-24 13:27:11.959Z",
+    "email": "info@ristorantedanino.it",
+    "id": "4ah0h54r4u20qgm",
+    "indirizzo": "Corso del Popolo 51",
+    "nome": "Ristorante Da Nino",
+    "note": "Cucina professionale: bollino blu obbligatorio ogni anno.",
+    "referente": "Sig. Nino Carrara",
+    "telefono": "041 572 330",
+    "tipo": "azienda",
+    "updated": "2026-10-24 13:27:11.959Z"
+   },
+   {
+    "cap": "30038",
+    "citta": "Spinea",
+    "collectionName": "clienti",
+    "created": "2026-10-24 13:27:11.959Z",
+    "email": "maria.gervasoni@gmail.com",
+    "id": "po8qxu5zcps1d08",
+    "indirizzo": "Via Roma 4",
+    "nome": "Sig.ra Maria Gervasoni",
+    "note": "",
+    "referente": "",
+    "telefono": "347 665 1208",
+    "tipo": "privato",
+    "updated": "2026-10-24 13:27:11.959Z"
+   },
+   {
+    "cap": "30031",
+    "citta": "Dolo",
+    "collectionName": "clienti",
+    "created": "2026-10-24 13:27:11.959Z",
+    "email": "parcodellerose@amministrazioni.it",
+    "id": "5azyaqap3qcuejd",
+    "indirizzo": "Via delle Rose 3",
+    "nome": "Condominio Parco delle Rose",
+    "note": "",
+    "referente": "Geom. Alberto Signorelli",
+    "telefono": "041 611 209",
+    "tipo": "condominio",
+    "updated": "2026-10-24 13:27:11.959Z"
+   },
+   {
+    "cap": "30027",
+    "citta": "San Donà di Piave",
+    "collectionName": "clienti",
+    "created": "2026-10-24 13:27:11.960Z",
+    "email": "trespighe@virgilio.it",
+    "id": "zk5l3hoplnc77h0",
+    "indirizzo": "Via Jesolo 19",
+    "nome": "Panificio Tre Spighe",
+    "note": "",
+    "referente": "Sig. Davide Ongaro",
+    "telefono": "041 790 442",
+    "tipo": "azienda",
+    "updated": "2026-10-24 13:27:11.960Z"
+   },
+   {
+    "cap": "30033",
+    "citta": "Noale",
+    "collectionName": "clienti",
+    "created": "2026-10-24 13:27:11.960Z",
+    "email": "p.marchetti@outlook.it",
+    "id": "4g1qno8ifhqrwp8",
+    "indirizzo": "Via Matteotti 22",
+    "nome": "Sig. Paolo Marchetti",
+    "note": "",
+    "referente": "",
+    "telefono": "335 802 7714",
+    "tipo": "privato",
+    "updated": "2026-10-24 13:27:11.960Z"
+   },
+   {
+    "cap": "30172",
+    "citta": "Mestre",
+    "collectionName": "clienti",
+    "created": "2026-10-24 13:27:11.960Z",
+    "email": "info@fitclubmestre.it",
+    "id": "o01zxdywtbhoh22",
+    "indirizzo": "Via Torino 96",
+    "nome": "Palestra FitClub",
+    "note": "",
+    "referente": "Sig. Simone Vitali",
+    "telefono": "041 335 890",
+    "tipo": "azienda",
+    "updated": "2026-10-24 13:27:11.960Z"
+   },
+   {
+    "cap": "30030",
+    "citta": "Martellago",
+    "collectionName": "clienti",
+    "created": "2026-10-24 13:27:11.960Z",
+    "email": "famiglia.riva@gmail.com",
+    "id": "x7peptzx39udqib",
+    "indirizzo": "Via Castellana 7",
+    "nome": "Famiglia Riva",
+    "note": "Interessati a sostituire la caldaia con pompa di calore: sopralluogo fissato.",
+    "referente": "Sig.ra Chiara Riva",
+    "telefono": "349 118 5520",
+    "tipo": "privato",
+    "updated": "2026-10-24 13:27:11.960Z"
+   },
+   {
+    "cap": "30174",
+    "citta": "Mestre",
+    "collectionName": "clienti",
+    "created": "2026-10-24 13:27:11.960Z",
+    "email": "segreteria@notaiosessa.it",
+    "id": "tswi169mvd3aweg",
+    "indirizzo": "Piazza Ferretto 14",
+    "nome": "Studio Notarile Dott. Sessa",
+    "note": "",
+    "referente": "",
+    "telefono": "041 249 011",
+    "tipo": "azienda",
+    "updated": "2026-10-24 13:27:11.960Z"
+   },
+   {
+    "cap": "30172",
+    "citta": "Mestre",
+    "collectionName": "clienti",
+    "created": "2026-10-24 13:27:11.960Z",
+    "email": "anna.locatelli@tiscali.it",
+    "id": "ei4162ar77q0ou8",
+    "indirizzo": "Via Mestrina 30",
+    "nome": "Sig.ra Anna Locatelli",
+    "note": "",
+    "referente": "",
+    "telefono": "340 992 6317",
+    "tipo": "privato",
+    "updated": "2026-10-24 13:27:11.960Z"
+   }
+  ],
+  "impianti": [
+   {
+    "cliente": "p5cfwuahk6phpmm",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.960Z",
+    "data_posa": "2014-10-02 00:00:00.000Z",
+    "id": "qtkif271qp6r6sc",
+    "indirizzo_installazione": "Via Roma 12, locale caldaia interrato, Mirano",
+    "marca": "Riello",
+    "matricola": "RL-2014-88412",
+    "modello": "Condexa Pro 100",
+    "note": "Impianto vicino a fine vita: valutare sostituzione (commessa aperta).",
+    "potenza_kw": 98,
+    "scadenza_bollino": "2026-10-01 00:00:00.000Z",
+    "scadenza_controllo": "2026-09-12 00:00:00.000Z",
+    "tipo": "caldaia_condominiale",
+    "ultimo_intervento": "2025-09-15 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.960Z"
+   },
+   {
+    "cliente": "p5cfwuahk6phpmm",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.960Z",
+    "data_posa": "2014-10-02 00:00:00.000Z",
+    "id": "nula3g9r70ogjdc",
+    "indirizzo_installazione": "Via Roma 12, locale caldaia interrato, Mirano",
+    "marca": "Riello",
+    "matricola": "RL-2014-88413",
+    "modello": "Condexa Pro 100",
+    "note": "",
+    "potenza_kw": 98,
+    "scadenza_bollino": "2026-10-01 00:00:00.000Z",
+    "scadenza_controllo": "2026-09-12 00:00:00.000Z",
+    "tipo": "caldaia_condominiale",
+    "ultimo_intervento": "2025-09-15 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.960Z"
+   },
+   {
+    "cliente": "d923ggbkovovfvh",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.961Z",
+    "data_posa": "2019-04-11 00:00:00.000Z",
+    "id": "g8s138fc0r8peq6",
+    "indirizzo_installazione": "Gran Viale Santa Maria Elisabetta 27, centrale termica, Venezia Lido",
+    "marca": "Vaillant",
+    "matricola": "VA-2019-55207",
+    "modello": "ecoTEC plus VC 246",
+    "note": "",
+    "potenza_kw": 24,
+    "scadenza_bollino": "2026-09-15 00:00:00.000Z",
+    "scadenza_controllo": "2026-09-25 00:00:00.000Z",
+    "tipo": "caldaia",
+    "ultimo_intervento": "2026-06-20 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.961Z"
+   },
+   {
+    "cliente": "d923ggbkovovfvh",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.961Z",
+    "data_posa": "2022-05-30 00:00:00.000Z",
+    "id": "932w0wfosblcnws",
+    "indirizzo_installazione": "Gran Viale Santa Maria Elisabetta 27, piano camere, Venezia Lido",
+    "marca": "Daikin",
+    "matricola": "DK-2022-31098",
+    "modello": "Multi Split 4MXM80N",
+    "note": "",
+    "potenza_kw": 8,
+    "scadenza_bollino": "",
+    "scadenza_controllo": "2027-06-01 00:00:00.000Z",
+    "tipo": "climatizzatore",
+    "ultimo_intervento": "2026-06-20 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.961Z"
+   },
+   {
+    "cliente": "ygcszj9fkzer7r2",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.961Z",
+    "data_posa": "2016-11-08 00:00:00.000Z",
+    "id": "pn2e1g6bwts7nou",
+    "indirizzo_installazione": "Via Miranese 84, cucina, Mestre",
+    "marca": "Baxi",
+    "matricola": "BX-2016-77450",
+    "modello": "Luna Duo-tec E 24",
+    "note": "",
+    "potenza_kw": 24,
+    "scadenza_bollino": "2027-03-10 00:00:00.000Z",
+    "scadenza_controllo": "2026-08-28 00:00:00.000Z",
+    "tipo": "caldaia",
+    "ultimo_intervento": "2025-08-28 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.961Z"
+   },
+   {
+    "cliente": "ygcszj9fkzer7r2",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.961Z",
+    "data_posa": "2021-06-14 00:00:00.000Z",
+    "id": "8robd5uq562c6c1",
+    "indirizzo_installazione": "Via Miranese 84, soggiorno, Mestre",
+    "marca": "Mitsubishi",
+    "matricola": "MI-2021-09334",
+    "modello": "Kirigamine MSZ-AP35",
+    "note": "",
+    "potenza_kw": 3.5,
+    "scadenza_bollino": "",
+    "scadenza_controllo": "2026-09-28 00:00:00.000Z",
+    "tipo": "climatizzatore",
+    "ultimo_intervento": "2025-09-30 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.961Z"
+   },
+   {
+    "cliente": "4ah0h54r4u20qgm",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.961Z",
+    "data_posa": "2018-03-22 00:00:00.000Z",
+    "id": "fhki2bbamlnoyjf",
+    "indirizzo_installazione": "Corso del Popolo 51, retro cucina, Chioggia",
+    "marca": "Ferroli",
+    "matricola": "FE-2018-41126",
+    "modello": "Divacondens D 28",
+    "note": "",
+    "potenza_kw": 28,
+    "scadenza_bollino": "2026-09-09 00:00:00.000Z",
+    "scadenza_controllo": "2026-09-09 00:00:00.000Z",
+    "tipo": "caldaia",
+    "ultimo_intervento": "2025-09-09 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.961Z"
+   },
+   {
+    "cliente": "4ah0h54r4u20qgm",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.962Z",
+    "data_posa": "2020-04-18 00:00:00.000Z",
+    "id": "nr7ovd0czw0mwyc",
+    "indirizzo_installazione": "Corso del Popolo 51, sala, Chioggia",
+    "marca": "Daikin",
+    "matricola": "DK-2020-66781",
+    "modello": "Perfera FTXM50R",
+    "note": "",
+    "potenza_kw": 5,
+    "scadenza_bollino": "",
+    "scadenza_controllo": "2027-04-18 00:00:00.000Z",
+    "tipo": "climatizzatore",
+    "ultimo_intervento": "2026-04-18 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.961Z"
+   },
+   {
+    "cliente": "po8qxu5zcps1d08",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.962Z",
+    "data_posa": "2015-09-01 00:00:00.000Z",
+    "id": "cjj43yhhk59estg",
+    "indirizzo_installazione": "Via Roma 4, bagno, Spinea",
+    "marca": "Junkers",
+    "matricola": "JU-2015-20987",
+    "modello": "HydroPower WTD 14",
+    "note": "",
+    "potenza_kw": 14,
+    "scadenza_bollino": "",
+    "scadenza_controllo": "2026-11-20 00:00:00.000Z",
+    "tipo": "scaldacqua",
+    "ultimo_intervento": "2026-09-08 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.962Z"
+   },
+   {
+    "cliente": "5azyaqap3qcuejd",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.962Z",
+    "data_posa": "2017-02-15 00:00:00.000Z",
+    "id": "vxfa6vtcdxqe8kl",
+    "indirizzo_installazione": "Via delle Rose 3, centrale termica, Dolo",
+    "marca": "Viessmann",
+    "matricola": "VS-2017-12045",
+    "modello": "Vitodens 200-W 150",
+    "note": "",
+    "potenza_kw": 150,
+    "scadenza_bollino": "2026-09-30 00:00:00.000Z",
+    "scadenza_controllo": "2026-09-18 00:00:00.000Z",
+    "tipo": "caldaia_condominiale",
+    "ultimo_intervento": "2026-09-02 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.962Z"
+   },
+   {
+    "cliente": "zk5l3hoplnc77h0",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.962Z",
+    "data_posa": "2013-06-25 00:00:00.000Z",
+    "id": "lxqxkcge2q8itcd",
+    "indirizzo_installazione": "Via Jesolo 19, laboratorio, San Donà di Piave",
+    "marca": "Riello",
+    "matricola": "RL-2013-65502",
+    "modello": "Start Condens 25",
+    "note": "Locale caldaia da adeguare: commessa sospesa in attesa del muratore.",
+    "potenza_kw": 25,
+    "scadenza_bollino": "2026-08-30 00:00:00.000Z",
+    "scadenza_controllo": "2026-08-15 00:00:00.000Z",
+    "tipo": "caldaia",
+    "ultimo_intervento": "2026-09-02 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.962Z"
+   },
+   {
+    "cliente": "4g1qno8ifhqrwp8",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.962Z",
+    "data_posa": "2012-10-30 00:00:00.000Z",
+    "id": "5scqww3exep54sd",
+    "indirizzo_installazione": "Via Matteotti 22, balcone, Noale",
+    "marca": "Baxi",
+    "matricola": "BX-2012-30815",
+    "modello": "Luna 3 Comfort 24",
+    "note": "",
+    "potenza_kw": 24,
+    "scadenza_bollino": "2026-12-01 00:00:00.000Z",
+    "scadenza_controllo": "2027-05-12 00:00:00.000Z",
+    "tipo": "caldaia",
+    "ultimo_intervento": "2026-09-07 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.962Z"
+   },
+   {
+    "cliente": "o01zxdywtbhoh22",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.962Z",
+    "data_posa": "2023-09-12 00:00:00.000Z",
+    "id": "poi5w3isxaoe5sw",
+    "indirizzo_installazione": "Via Torino 96, centrale tecnica, Mestre",
+    "marca": "Daikin",
+    "matricola": "DK-2023-18420",
+    "modello": "Altherma 3 H 16",
+    "note": "",
+    "potenza_kw": 16,
+    "scadenza_bollino": "",
+    "scadenza_controllo": "2026-09-22 00:00:00.000Z",
+    "tipo": "pompa_di_calore",
+    "ultimo_intervento": "2025-09-22 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.962Z"
+   },
+   {
+    "cliente": "x7peptzx39udqib",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.963Z",
+    "data_posa": "2019-07-02 00:00:00.000Z",
+    "id": "lwxwb7gdmwlr03f",
+    "indirizzo_installazione": "Via Castellana 7, camere, Martellago",
+    "marca": "Mitsubishi",
+    "matricola": "MI-2019-44771",
+    "modello": "Dual Split MXZ-2F53",
+    "note": "",
+    "potenza_kw": 5.3,
+    "scadenza_bollino": "",
+    "scadenza_controllo": "2027-02-14 00:00:00.000Z",
+    "tipo": "climatizzatore",
+    "ultimo_intervento": "2026-02-14 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.963Z"
+   },
+   {
+    "cliente": "tswi169mvd3aweg",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.963Z",
+    "data_posa": "2021-10-05 00:00:00.000Z",
+    "id": "ie3kpioyzqk1oll",
+    "indirizzo_installazione": "Piazza Ferretto 14, uffici, Mestre",
+    "marca": "Daikin",
+    "matricola": "DK-2021-90312",
+    "modello": "Stylish FTXA42",
+    "note": "",
+    "potenza_kw": 4.2,
+    "scadenza_bollino": "",
+    "scadenza_controllo": "2026-10-05 00:00:00.000Z",
+    "tipo": "climatizzatore",
+    "ultimo_intervento": "2025-10-05 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.963Z"
+   },
+   {
+    "cliente": "ei4162ar77q0ou8",
+    "collectionName": "impianti",
+    "created": "2026-10-24 13:27:11.963Z",
+    "data_posa": "2020-01-20 00:00:00.000Z",
+    "id": "rx56wkcmyfaxwxe",
+    "indirizzo_installazione": "Via Mestrina 30, cucina, Mestre",
+    "marca": "Vaillant",
+    "matricola": "VA-2020-71883",
+    "modello": "ecoTEC pure VMW 236",
+    "note": "",
+    "potenza_kw": 23,
+    "scadenza_bollino": "2026-09-20 00:00:00.000Z",
+    "scadenza_controllo": "2026-09-10 00:00:00.000Z",
+    "tipo": "caldaia",
+    "ultimo_intervento": "2025-09-10 00:00:00.000Z",
+    "updated": "2026-10-24 13:27:11.963Z"
+   }
+  ],
+  "chiamate": [
+   {
+    "cliente": "ygcszj9fkzer7r2",
+    "collectionName": "chiamate",
+    "created": "2026-10-24 13:27:11.972Z",
+    "data_contatto": "",
+    "data_scadenza": "2026-08-28 00:00:00.000Z",
+    "id": "pewroi8pozax1o1",
+    "impianto": "pn2e1g6bwts7nou",
+    "note": "Controllo scaduto: richiamare con insistenza.",
+    "priorita": "alta",
+    "stato": "da_chiamare",
+    "tipo_scadenza": "controllo",
+    "updated": "2026-10-24 13:27:11.972Z"
+   },
+   {
+    "cliente": "zk5l3hoplnc77h0",
+    "collectionName": "chiamate",
+    "created": "2026-10-24 13:27:11.972Z",
+    "data_contatto": "2026-09-08 00:00:00.000Z",
+    "data_scadenza": "2026-08-30 00:00:00.000Z",
+    "id": "miiwkfy88yl8hd9",
+    "impianto": "lxqxkcge2q8itcd",
+    "note": "Il titolare aspetta la fine dei lavori murari: risentire a fine mese.",
+    "priorita": "alta",
+    "stato": "contattato",
+    "tipo_scadenza": "bollino",
+    "updated": "2026-10-24 13:27:11.972Z"
+   },
+   {
+    "cliente": "p5cfwuahk6phpmm",
+    "collectionName": "chiamate",
+    "created": "2026-10-24 13:27:11.973Z",
+    "data_contatto": "2026-09-05 00:00:00.000Z",
+    "data_scadenza": "2026-09-12 00:00:00.000Z",
+    "id": "o8x6t0drnmkawsv",
+    "impianto": "qtkif271qp6r6sc",
+    "note": "Intervento del 12/09 con Luca, ore 10:00.",
+    "priorita": "media",
+    "stato": "appuntamento_fissato",
+    "tipo_scadenza": "controllo",
+    "updated": "2026-10-24 13:27:11.973Z"
+   },
+   {
+    "cliente": "4ah0h54r4u20qgm",
+    "collectionName": "chiamate",
+    "created": "2026-10-24 13:27:11.973Z",
+    "data_contatto": "",
+    "data_scadenza": "2026-09-09 00:00:00.000Z",
+    "id": "6gnugi3zo9l2scd",
+    "impianto": "fhki2bbamlnoyjf",
+    "note": "Bollino in scadenza oggi: confermare l'intervento in corso.",
+    "priorita": "alta",
+    "stato": "da_chiamare",
+    "tipo_scadenza": "bollino",
+    "updated": "2026-10-24 13:27:11.973Z"
+   },
+   {
+    "cliente": "ei4162ar77q0ou8",
+    "collectionName": "chiamate",
+    "created": "2026-10-24 13:27:11.973Z",
+    "data_contatto": "2026-09-07 00:00:00.000Z",
+    "data_scadenza": "2026-09-10 00:00:00.000Z",
+    "id": "yjrcfq4k7qdrbat",
+    "impianto": "rx56wkcmyfaxwxe",
+    "note": "Confermato per il 10/09 ore 8:30.",
+    "priorita": "media",
+    "stato": "contattato",
+    "tipo_scadenza": "controllo",
+    "updated": "2026-10-24 13:27:11.973Z"
+   },
+   {
+    "cliente": "5azyaqap3qcuejd",
+    "collectionName": "chiamate",
+    "created": "2026-10-24 13:27:11.973Z",
+    "data_contatto": "",
+    "data_scadenza": "2026-09-18 00:00:00.000Z",
+    "id": "7tw152ynmeiffko",
+    "impianto": "vxfa6vtcdxqe8kl",
+    "note": "",
+    "priorita": "media",
+    "stato": "da_chiamare",
+    "tipo_scadenza": "controllo",
+    "updated": "2026-10-24 13:27:11.973Z"
+   },
+   {
+    "cliente": "d923ggbkovovfvh",
+    "collectionName": "chiamate",
+    "created": "2026-10-24 13:27:11.973Z",
+    "data_contatto": "2026-09-04 00:00:00.000Z",
+    "data_scadenza": "2026-09-15 00:00:00.000Z",
+    "id": "qpvgg2hfsrqp8xb",
+    "impianto": "g8s138fc0r8peq6",
+    "note": "Fissato il 15/09 ore 15:00 con Marco.",
+    "priorita": "media",
+    "stato": "appuntamento_fissato",
+    "tipo_scadenza": "bollino",
+    "updated": "2026-10-24 13:27:11.973Z"
+   },
+   {
+    "cliente": "po8qxu5zcps1d08",
+    "collectionName": "chiamate",
+    "created": "2026-10-24 13:27:11.973Z",
+    "data_contatto": "2026-09-08 00:00:00.000Z",
+    "data_scadenza": "2026-11-20 00:00:00.000Z",
+    "id": "szn54e7zuuoo9x1",
+    "impianto": "cjj43yhhk59estg",
+    "note": "Manutenzione eseguita l'8/09: prossimo controllo a novembre.",
+    "priorita": "bassa",
+    "stato": "eseguito",
+    "tipo_scadenza": "controllo",
+    "updated": "2026-10-24 13:27:11.973Z"
+   }
+  ],
+  "commesse": [
+   {
+    "avanzamento": 65,
+    "cliente": "p5cfwuahk6phpmm",
+    "codice": "C-2026-021",
+    "collectionName": "commesse",
+    "created": "2026-10-24 13:27:11.964Z",
+    "data_apertura": "2026-07-28 00:00:00.000Z",
+    "data_chiusura": "",
+    "descrizione": "Rimozione delle due Condexa Pro a fine vita e posa di una nuova cascata a condensazione. Delibera assembleare approvata a giugno.",
+    "id": "9fa7rnqzm7tee98",
+    "impianto": "qtkif271qp6r6sc",
+    "stato": "in_corso",
+    "titolo": "Sostituzione caldaia centrale termica",
+    "updated": "2026-10-24 13:27:11.964Z"
+   },
+   {
+    "avanzamento": 40,
+    "cliente": "d923ggbkovovfvh",
+    "codice": "C-2026-019",
+    "collectionName": "commesse",
+    "created": "2026-10-24 13:27:11.964Z",
+    "data_apertura": "2026-07-10 00:00:00.000Z",
+    "data_chiusura": "",
+    "descrizione": "Posa di 6 unità interne e 2 unità esterne al piano camere. Lavori concordati nei giorni di bassa occupazione.",
+    "id": "l1dqdgp4mwf3d16",
+    "impianto": "932w0wfosblcnws",
+    "stato": "in_corso",
+    "titolo": "Installazione climatizzatori piano camere",
+    "updated": "2026-10-24 13:27:11.964Z"
+   },
+   {
+    "avanzamento": 100,
+    "cliente": "5azyaqap3qcuejd",
+    "codice": "C-2026-017",
+    "collectionName": "commesse",
+    "created": "2026-10-24 13:27:11.965Z",
+    "data_apertura": "2026-06-15 00:00:00.000Z",
+    "data_chiusura": "2026-09-02 00:00:00.000Z",
+    "descrizione": "Sostituzione circolatore, pulizia scambiatore e verifica tenuta vaso di espansione.",
+    "id": "j7g7t0ztn95qj2i",
+    "impianto": "vxfa6vtcdxqe8kl",
+    "stato": "completata",
+    "titolo": "Manutenzione straordinaria centrale termica",
+    "updated": "2026-10-24 13:27:11.965Z"
+   },
+   {
+    "avanzamento": 10,
+    "cliente": "x7peptzx39udqib",
+    "codice": "C-2026-023",
+    "collectionName": "commesse",
+    "created": "2026-10-24 13:27:11.965Z",
+    "data_apertura": "2026-09-04 00:00:00.000Z",
+    "data_chiusura": "",
+    "descrizione": "Rilievo misure e verifica quadro elettrico per la sostituzione della caldaia con pompa di calore ibrida.",
+    "id": "26u95ys1rqj2nlw",
+    "impianto": "lwxwb7gdmwlr03f",
+    "stato": "aperta",
+    "titolo": "Sopralluogo per pompa di calore",
+    "updated": "2026-10-24 13:27:11.965Z"
+   },
+   {
+    "avanzamento": 55,
+    "cliente": "zk5l3hoplnc77h0",
+    "codice": "C-2026-015",
+    "collectionName": "commesse",
+    "created": "2026-10-24 13:27:11.965Z",
+    "data_apertura": "2026-05-20 00:00:00.000Z",
+    "data_chiusura": "",
+    "descrizione": "Apertura feritoia di ventilazione e rivestimento pareti. In attesa del muratore del cliente.",
+    "id": "p1orwdk96ku1smf",
+    "impianto": "lxqxkcge2q8itcd",
+    "stato": "sospesa",
+    "titolo": "Adeguamento locale caldaia",
+    "updated": "2026-10-24 13:27:11.965Z"
+   },
+   {
+    "avanzamento": 25,
+    "cliente": "4ah0h54r4u20qgm",
+    "codice": "C-2026-024",
+    "collectionName": "commesse",
+    "created": "2026-10-24 13:27:11.966Z",
+    "data_apertura": "2026-09-05 00:00:00.000Z",
+    "data_chiusura": "",
+    "descrizione": "Controllo periodico con analisi fumi e rinnovo bollino blu prima della stagione invernale.",
+    "id": "z7r6z6o97ty3qi6",
+    "impianto": "fhki2bbamlnoyjf",
+    "stato": "in_corso",
+    "titolo": "Controllo fumi e bollino blu annuale",
+    "updated": "2026-10-24 13:27:11.966Z"
+   }
+  ],
+  "interventi": [
+   {
+    "cliente": "po8qxu5zcps1d08",
+    "collectionName": "interventi",
+    "commessa": "",
+    "created": "2026-10-24 13:27:11.966Z",
+    "data": "2026-09-08 00:00:00.000Z",
+    "id": "1gdy88fdx1n4vv6",
+    "impianto": "cjj43yhhk59estg",
+    "note": "Pulizia bruciatore e verifica tiraggio.",
+    "ora": "10:30",
+    "stato": "completato",
+    "tecnico": "uw8ix881fty6m16",
+    "tipo": "manutenzione",
+    "updated": "2026-10-24 13:27:11.966Z"
+   },
+   {
+    "cliente": "4g1qno8ifhqrwp8",
+    "collectionName": "interventi",
+    "commessa": "",
+    "created": "2026-10-24 13:27:11.966Z",
+    "data": "2026-09-07 00:00:00.000Z",
+    "id": "9asaehh6t6n2kq5",
+    "impianto": "5scqww3exep54sd",
+    "note": "Sostituita scheda di accensione guasta.",
+    "ora": "16:00",
+    "stato": "completato",
+    "tecnico": "ay07hs8thcpyr2z",
+    "tipo": "riparazione",
+    "updated": "2026-10-24 13:27:11.966Z"
+   },
+   {
+    "cliente": "zk5l3hoplnc77h0",
+    "collectionName": "interventi",
+    "commessa": "",
+    "created": "2026-10-24 13:27:11.966Z",
+    "data": "2026-09-02 00:00:00.000Z",
+    "id": "s8rx9nbxd1d1vf4",
+    "impianto": "lxqxkcge2q8itcd",
+    "note": "Manutenzione ordinaria prima del fermo per i lavori murari.",
+    "ora": "07:30",
+    "stato": "completato",
+    "tecnico": "uw8ix881fty6m16",
+    "tipo": "manutenzione",
+    "updated": "2026-10-24 13:27:11.966Z"
+   },
+   {
+    "cliente": "5azyaqap3qcuejd",
+    "collectionName": "interventi",
+    "commessa": "j7g7t0ztn95qj2i",
+    "created": "2026-10-24 13:27:11.966Z",
+    "data": "2026-09-02 00:00:00.000Z",
+    "id": "3zqhzs00k8v4b0f",
+    "impianto": "vxfa6vtcdxqe8kl",
+    "note": "Chiusura lavori straordinari: collaudo finale eseguito.",
+    "ora": "09:00",
+    "stato": "completato",
+    "tecnico": "ay07hs8thcpyr2z",
+    "tipo": "manutenzione",
+    "updated": "2026-10-24 13:27:11.966Z"
+   },
+   {
+    "cliente": "4ah0h54r4u20qgm",
+    "collectionName": "interventi",
+    "commessa": "z7r6z6o97ty3qi6",
+    "created": "2026-10-24 13:27:11.967Z",
+    "data": "2026-09-09 00:00:00.000Z",
+    "id": "qo7qio9ygwr3vq5",
+    "impianto": "fhki2bbamlnoyjf",
+    "note": "Analisi fumi + bollino. Portare il modulo blu.",
+    "ora": "09:00",
+    "stato": "in_corso",
+    "tecnico": "uw8ix881fty6m16",
+    "tipo": "controllo_periodico",
+    "updated": "2026-10-24 13:27:11.967Z"
+   },
+   {
+    "cliente": "x7peptzx39udqib",
+    "collectionName": "interventi",
+    "commessa": "26u95ys1rqj2nlw",
+    "created": "2026-10-24 13:27:11.967Z",
+    "data": "2026-09-09 00:00:00.000Z",
+    "id": "8lgsum7pswvyilb",
+    "impianto": "lwxwb7gdmwlr03f",
+    "note": "Rilievo misure, foto locale caldaia e verifica quadro elettrico.",
+    "ora": "14:30",
+    "stato": "programmato",
+    "tecnico": "ay07hs8thcpyr2z",
+    "tipo": "sopralluogo",
+    "updated": "2026-10-24 13:27:11.967Z"
+   },
+   {
+    "cliente": "ei4162ar77q0ou8",
+    "collectionName": "interventi",
+    "commessa": "",
+    "created": "2026-10-24 13:27:11.967Z",
+    "data": "2026-09-10 00:00:00.000Z",
+    "id": "j7yb48f8qs7w6t6",
+    "impianto": "rx56wkcmyfaxwxe",
+    "note": "",
+    "ora": "08:30",
+    "stato": "programmato",
+    "tecnico": "uw8ix881fty6m16",
+    "tipo": "controllo_periodico",
+    "updated": "2026-10-24 13:27:11.967Z"
+   },
+   {
+    "cliente": "o01zxdywtbhoh22",
+    "collectionName": "interventi",
+    "commessa": "",
+    "created": "2026-10-24 13:27:11.968Z",
+    "data": "2026-09-10 00:00:00.000Z",
+    "id": "lsygtw72yxp4xjf",
+    "impianto": "poi5w3isxaoe5sw",
+    "note": "Controllo pressione circuito e pulizia filtri.",
+    "ora": "11:00",
+    "stato": "programmato",
+    "tecnico": "ay07hs8thcpyr2z",
+    "tipo": "manutenzione",
+    "updated": "2026-10-24 13:27:11.968Z"
+   },
+   {
+    "cliente": "p5cfwuahk6phpmm",
+    "collectionName": "interventi",
+    "commessa": "9fa7rnqzm7tee98",
+    "created": "2026-10-24 13:27:11.968Z",
+    "data": "2026-09-11 00:00:00.000Z",
+    "id": "t7yq86pe7a09ddw",
+    "impianto": "qtkif271qp6r6sc",
+    "note": "Consegna nuova cascata in mattinata: inizio smontaggio.",
+    "ora": "09:00",
+    "stato": "programmato",
+    "tecnico": "uw8ix881fty6m16",
+    "tipo": "installazione",
+    "updated": "2026-10-24 13:27:11.968Z"
+   },
+   {
+    "cliente": "p5cfwuahk6phpmm",
+    "collectionName": "interventi",
+    "commessa": "",
+    "created": "2026-10-24 13:27:11.968Z",
+    "data": "2026-09-12 00:00:00.000Z",
+    "id": "zelrjsh5doywx04",
+    "impianto": "nula3g9r70ogjdc",
+    "note": "",
+    "ora": "10:00",
+    "stato": "programmato",
+    "tecnico": "ay07hs8thcpyr2z",
+    "tipo": "controllo_periodico",
+    "updated": "2026-10-24 13:27:11.968Z"
+   },
+   {
+    "cliente": "d923ggbkovovfvh",
+    "collectionName": "interventi",
+    "commessa": "l1dqdgp4mwf3d16",
+    "created": "2026-10-24 13:27:11.968Z",
+    "data": "2026-09-14 00:00:00.000Z",
+    "id": "jo8vq8ohk7kz67s",
+    "impianto": "932w0wfosblcnws",
+    "note": "Posa unità esterne sul terrazzo tecnico.",
+    "ora": "09:30",
+    "stato": "programmato",
+    "tecnico": "ay07hs8thcpyr2z",
+    "tipo": "installazione",
+    "updated": "2026-10-24 13:27:11.968Z"
+   },
+   {
+    "cliente": "d923ggbkovovfvh",
+    "collectionName": "interventi",
+    "commessa": "",
+    "created": "2026-10-24 13:27:11.968Z",
+    "data": "2026-09-15 00:00:00.000Z",
+    "id": "4gu2hcklkr5a4iw",
+    "impianto": "g8s138fc0r8peq6",
+    "note": "Controllo fumi e rinnovo bollino blu.",
+    "ora": "15:00",
+    "stato": "programmato",
+    "tecnico": "uw8ix881fty6m16",
+    "tipo": "controllo_periodico",
+    "updated": "2026-10-24 13:27:11.968Z"
+   }
+  ],
+  "rapportini": [
+   {
+    "cliente": "po8qxu5zcps1d08",
+    "collectionName": "rapportini",
+    "created": "2026-10-24 13:27:11.969Z",
+    "data": "2026-09-08 00:00:00.000Z",
+    "descrizione": "Pulizia bruciatore, controllo tiraggio e verifica tenuta gas. Funzionamento regolare.",
+    "id": "kfqfyi6rvctfbps",
+    "impianto": "cjj43yhhk59estg",
+    "importo": 120,
+    "intervento": "1gdy88fdx1n4vv6",
+    "numero": "R-2026-118",
+    "pagamento": "pos",
+    "stato": "chiuso",
+    "tecnico": "uw8ix881fty6m16",
+    "tipo_intervento": "manutenzione_ordinaria",
+    "updated": "2026-10-24 13:27:11.969Z"
+   },
+   {
+    "cliente": "4g1qno8ifhqrwp8",
+    "collectionName": "rapportini",
+    "created": "2026-10-24 13:27:11.969Z",
+    "data": "2026-09-07 00:00:00.000Z",
+    "descrizione": "Sostituzione scheda di accensione e prova di funzionamento. Ricambio fatturato a parte.",
+    "id": "rxmxjhra0tcpabj",
+    "impianto": "5scqww3exep54sd",
+    "importo": 240,
+    "intervento": "9asaehh6t6n2kq5",
+    "numero": "R-2026-117",
+    "pagamento": "bonifico",
+    "stato": "inviato_ufficio",
+    "tecnico": "ay07hs8thcpyr2z",
+    "tipo_intervento": "riparazione",
+    "updated": "2026-10-24 13:27:11.969Z"
+   },
+   {
+    "cliente": "zk5l3hoplnc77h0",
+    "collectionName": "rapportini",
+    "created": "2026-10-24 13:27:11.969Z",
+    "data": "2026-09-02 00:00:00.000Z",
+    "descrizione": "Manutenzione ordinaria con pulizia scambiatore primario.",
+    "id": "k6o59f7x38nv22i",
+    "impianto": "lxqxkcge2q8itcd",
+    "importo": 180,
+    "intervento": "s8rx9nbxd1d1vf4",
+    "numero": "R-2026-116",
+    "pagamento": "contanti",
+    "stato": "fatturato",
+    "tecnico": "uw8ix881fty6m16",
+    "tipo_intervento": "manutenzione_ordinaria",
+    "updated": "2026-10-24 13:27:11.969Z"
+   },
+   {
+    "cliente": "ygcszj9fkzer7r2",
+    "collectionName": "rapportini",
+    "created": "2026-10-24 13:27:11.969Z",
+    "data": "2026-08-28 00:00:00.000Z",
+    "descrizione": "Controllo periodico: rendimento nella norma.",
+    "id": "y5wsz4gdtzgq04z",
+    "impianto": "pn2e1g6bwts7nou",
+    "importo": 90,
+    "intervento": "",
+    "numero": "R-2026-115",
+    "pagamento": "da_incassare",
+    "stato": "bozza",
+    "tecnico": "uw8ix881fty6m16",
+    "tipo_intervento": "controllo_periodico",
+    "updated": "2026-10-24 13:27:11.969Z"
+   },
+   {
+    "cliente": "d923ggbkovovfvh",
+    "collectionName": "rapportini",
+    "created": "2026-10-24 13:27:11.970Z",
+    "data": "2026-06-20 00:00:00.000Z",
+    "descrizione": "Manutenzione programmata da contratto: caldaia e unità esterne climatizzazione.",
+    "id": "s4qxcn7r22rnezw",
+    "impianto": "g8s138fc0r8peq6",
+    "importo": 450,
+    "intervento": "",
+    "numero": "R-2026-114",
+    "pagamento": "bonifico",
+    "stato": "fatturato",
+    "tecnico": "ay07hs8thcpyr2z",
+    "tipo_intervento": "manutenzione_ordinaria",
+    "updated": "2026-10-24 13:27:11.970Z"
+   },
+   {
+    "cliente": "ei4162ar77q0ou8",
+    "collectionName": "rapportini",
+    "created": "2026-10-24 13:27:11.970Z",
+    "data": "2025-09-10 00:00:00.000Z",
+    "descrizione": "Controllo periodico e pulizia filtri.",
+    "id": "s1uisx647hnnj4o",
+    "impianto": "rx56wkcmyfaxwxe",
+    "importo": 110,
+    "intervento": "",
+    "numero": "R-2026-113",
+    "pagamento": "pos",
+    "stato": "fatturato",
+    "tecnico": "uw8ix881fty6m16",
+    "tipo_intervento": "controllo_periodico",
+    "updated": "2026-10-24 13:27:11.970Z"
+   },
+   {
+    "cliente": "5azyaqap3qcuejd",
+    "collectionName": "rapportini",
+    "created": "2026-10-24 13:27:11.970Z",
+    "data": "2026-09-02 00:00:00.000Z",
+    "descrizione": "Chiusura manutenzione straordinaria: sostituzione circolatore e collaudo finale.",
+    "id": "q3txb89c8ntus06",
+    "impianto": "vxfa6vtcdxqe8kl",
+    "importo": 380,
+    "intervento": "3zqhzs00k8v4b0f",
+    "numero": "R-2026-112",
+    "pagamento": "assegno",
+    "stato": "inviato_ufficio",
+    "tecnico": "ay07hs8thcpyr2z",
+    "tipo_intervento": "manutenzione_ordinaria",
+    "updated": "2026-10-24 13:27:11.970Z"
+   },
+   {
+    "cliente": "4ah0h54r4u20qgm",
+    "collectionName": "rapportini",
+    "created": "2026-10-24 13:27:11.970Z",
+    "data": "2025-09-09 00:00:00.000Z",
+    "descrizione": "Controllo fumi e rinnovo bollino blu.",
+    "id": "s9mwaiq1sne8ayp",
+    "impianto": "fhki2bbamlnoyjf",
+    "importo": 130,
+    "intervento": "",
+    "numero": "R-2026-111",
+    "pagamento": "contanti",
+    "stato": "fatturato",
+    "tecnico": "uw8ix881fty6m16",
+    "tipo_intervento": "bollino",
+    "updated": "2026-10-24 13:27:11.970Z"
+   }
+  ],
+  "documenti": [
+   {
+    "cliente": "po8qxu5zcps1d08",
+    "collectionName": "documenti",
+    "commessa": "",
+    "created": "2026-10-24 13:27:11.970Z",
+    "data": "2026-09-08 00:00:00.000Z",
+    "file": "",
+    "id": "47dgjbk23w0y1eh",
+    "impianto": "cjj43yhhk59estg",
+    "note": "",
+    "tipo": "rapportino",
+    "titolo": "2026-09_RAP_Manutenzione_Gervasoni",
+    "updated": "2026-10-24 13:27:11.970Z"
+   },
+   {
+    "cliente": "4ah0h54r4u20qgm",
+    "collectionName": "documenti",
+    "commessa": "z7r6z6o97ty3qi6",
+    "created": "2026-10-24 13:27:11.970Z",
+    "data": "2026-09-09 00:00:00.000Z",
+    "file": "",
+    "id": "k1s7t9mjlgqp7pm",
+    "impianto": "fhki2bbamlnoyjf",
+    "note": "Da allegare a fine intervento.",
+    "tipo": "bollino",
+    "titolo": "2026-09_BOL_BollinoBlu_DaNino",
+    "updated": "2026-10-24 13:27:11.970Z"
+   },
+   {
+    "cliente": "p5cfwuahk6phpmm",
+    "collectionName": "documenti",
+    "commessa": "9fa7rnqzm7tee98",
+    "created": "2026-10-24 13:27:11.971Z",
+    "data": "2026-08-30 00:00:00.000Z",
+    "file": "",
+    "id": "ad198wzt3lljr9e",
+    "impianto": "qtkif271qp6r6sc",
+    "note": "",
+    "tipo": "libretto",
+    "titolo": "2026-08_LIB_LibrettoImpianto_ViaRoma12",
+    "updated": "2026-10-24 13:27:11.971Z"
+   },
+   {
+    "cliente": "x7peptzx39udqib",
+    "collectionName": "documenti",
+    "commessa": "26u95ys1rqj2nlw",
+    "created": "2026-10-24 13:27:11.971Z",
+    "data": "2026-09-09 00:00:00.000Z",
+    "file": "",
+    "id": "ybb45v37k7t1e03",
+    "impianto": "lwxwb7gdmwlr03f",
+    "note": "Foto del rilievo: parete di posa e quadro elettrico.",
+    "tipo": "foto",
+    "titolo": "2026-09_FOTO_Sopralluogo_Riva_LocaleCaldaia",
+    "updated": "2026-10-24 13:27:11.971Z"
+   },
+   {
+    "cliente": "d923ggbkovovfvh",
+    "collectionName": "documenti",
+    "commessa": "",
+    "created": "2026-10-24 13:27:11.971Z",
+    "data": "2026-07-01 00:00:00.000Z",
+    "file": "",
+    "id": "5ctmr0ysb7wavwa",
+    "impianto": "",
+    "note": "",
+    "tipo": "contratto",
+    "titolo": "2026-07_CON_ContrattoManutenzione_Belvedere",
+    "updated": "2026-10-24 13:27:11.971Z"
+   },
+   {
+    "cliente": "4g1qno8ifhqrwp8",
+    "collectionName": "documenti",
+    "commessa": "",
+    "created": "2026-10-24 13:27:11.971Z",
+    "data": "2026-09-07 00:00:00.000Z",
+    "file": "",
+    "id": "omxvo3upbdw6lks",
+    "impianto": "5scqww3exep54sd",
+    "note": "",
+    "tipo": "rapportino",
+    "titolo": "2026-09_RAP_Riparazione_Marchetti",
+    "updated": "2026-10-24 13:27:11.971Z"
+   },
+   {
+    "cliente": "5azyaqap3qcuejd",
+    "collectionName": "documenti",
+    "commessa": "j7g7t0ztn95qj2i",
+    "created": "2026-10-24 13:27:11.971Z",
+    "data": "2026-06-30 00:00:00.000Z",
+    "file": "",
+    "id": "a5eiz6t7lda4dfc",
+    "impianto": "vxfa6vtcdxqe8kl",
+    "note": "",
+    "tipo": "certificato",
+    "titolo": "2026-06_CER_CertificatoCentraleTermica_ParcoDelleRose",
+    "updated": "2026-10-24 13:27:11.971Z"
+   },
+   {
+    "cliente": "zk5l3hoplnc77h0",
+    "collectionName": "documenti",
+    "commessa": "p1orwdk96ku1smf",
+    "created": "2026-10-24 13:27:11.971Z",
+    "data": "2026-09-02 00:00:00.000Z",
+    "file": "",
+    "id": "v1v3zaxd5173ul3",
+    "impianto": "lxqxkcge2q8itcd",
+    "note": "Stato del locale prima dei lavori murari.",
+    "tipo": "foto",
+    "titolo": "2026-09_FOTO_LocaleCaldaia_Panificio",
+    "updated": "2026-10-24 13:27:11.971Z"
+   },
+   {
+    "cliente": "ygcszj9fkzer7r2",
+    "collectionName": "documenti",
+    "commessa": "",
+    "created": "2026-10-24 13:27:11.971Z",
+    "data": "2026-08-28 00:00:00.000Z",
+    "file": "",
+    "id": "iym3x2kbdug8xj3",
+    "impianto": "pn2e1g6bwts7nou",
+    "note": "",
+    "tipo": "bollino",
+    "titolo": "2026-08_BOL_Bollino_Colombo",
+    "updated": "2026-10-24 13:27:11.971Z"
+   },
+   {
+    "cliente": "ei4162ar77q0ou8",
+    "collectionName": "documenti",
+    "commessa": "",
+    "created": "2026-10-24 13:27:11.971Z",
+    "data": "2025-09-10 00:00:00.000Z",
+    "file": "",
+    "id": "ixpfj1es6w75s33",
+    "impianto": "rx56wkcmyfaxwxe",
+    "note": "",
+    "tipo": "rapportino",
+    "titolo": "2025-09_RAP_Controllo_Locatelli",
+    "updated": "2026-10-24 13:27:11.971Z"
+   }
+  ],
+  "documenti_richiesti": [
+   {
+    "collectionName": "documenti_richiesti",
+    "commessa": "9fa7rnqzm7tee98",
+    "created": "2026-10-24 13:27:11.972Z",
+    "id": "vv85i26lan6f10n",
+    "intervento": "",
+    "nome": "Dichiarazione di conformità (predisposta esternamente)",
+    "note": "",
+    "stato": "da_richiedere",
+    "updated": "2026-10-24 13:27:11.972Z"
+   },
+   {
+    "collectionName": "documenti_richiesti",
+    "commessa": "9fa7rnqzm7tee98",
+    "created": "2026-10-24 13:27:11.972Z",
+    "id": "3loh0gjqgq0droq",
+    "intervento": "",
+    "nome": "Libretto di impianto aggiornato",
+    "note": "",
+    "stato": "richiesto",
+    "updated": "2026-10-24 13:27:11.972Z"
+   },
+   {
+    "collectionName": "documenti_richiesti",
+    "commessa": "9fa7rnqzm7tee98",
+    "created": "2026-10-24 13:27:11.972Z",
+    "id": "gda7jadjqjxwdk5",
+    "intervento": "",
+    "nome": "Fotografie fine lavori",
+    "note": "",
+    "stato": "da_richiedere",
+    "updated": "2026-10-24 13:27:11.972Z"
+   },
+   {
+    "collectionName": "documenti_richiesti",
+    "commessa": "l1dqdgp4mwf3d16",
+    "created": "2026-10-24 13:27:11.972Z",
+    "id": "ibm0tw8fxqhu7z8",
+    "intervento": "",
+    "nome": "Planimetria unità esterne",
+    "note": "",
+    "stato": "ricevuto",
+    "updated": "2026-10-24 13:27:11.972Z"
+   },
+   {
+    "collectionName": "documenti_richiesti",
+    "commessa": "l1dqdgp4mwf3d16",
+    "created": "2026-10-24 13:27:11.972Z",
+    "id": "25lozkrc83jptic",
+    "intervento": "",
+    "nome": "Rapportino firmato dal direttore",
+    "note": "",
+    "stato": "richiesto",
+    "updated": "2026-10-24 13:27:11.972Z"
+   },
+   {
+    "collectionName": "documenti_richiesti",
+    "commessa": "j7g7t0ztn95qj2i",
+    "created": "2026-10-24 13:27:11.972Z",
+    "id": "vkwaejeyiab4rcf",
+    "intervento": "3zqhzs00k8v4b0f",
+    "nome": "Rapportino firmato",
+    "note": "",
+    "stato": "ricevuto",
+    "updated": "2026-10-24 13:27:11.972Z"
+   },
+   {
+    "collectionName": "documenti_richiesti",
+    "commessa": "j7g7t0ztn95qj2i",
+    "created": "2026-10-24 13:27:11.972Z",
+    "id": "nhg6589j9o09n75",
+    "intervento": "",
+    "nome": "Certificato di collaudo",
+    "note": "",
+    "stato": "ricevuto",
+    "updated": "2026-10-24 13:27:11.972Z"
+   },
+   {
+    "collectionName": "documenti_richiesti",
+    "commessa": "z7r6z6o97ty3qi6",
+    "created": "2026-10-24 13:27:11.972Z",
+    "id": "pcljsiv1nozkz0f",
+    "intervento": "qo7qio9ygwr3vq5",
+    "nome": "Modulo bollino blu compilato",
+    "note": "",
+    "stato": "da_richiedere",
+    "updated": "2026-10-24 13:27:11.972Z"
+   }
+  ]
+ }
+}

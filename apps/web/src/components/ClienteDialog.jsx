@@ -64,7 +64,7 @@ const ClienteDialog = ({ open, onOpenChange, cliente, onSaved }) => {
             <SelectInput value={form.tipo} onChange={set('tipo')} options={optsFrom(TIPI_CLIENTE)} />
           </Field>
           <Field label="Telefono">
-            <input className={inputCls} value={form.telefono} onChange={set('telefono')} placeholder="035 000 000" />
+            <input className={inputCls} value={form.telefono} onChange={set('telefono')} placeholder="041 000 000" />
           </Field>
           <Field label="Email">
             <input type="email" className={inputCls} value={form.email} onChange={set('email')} placeholder="cliente@email.it" />
@@ -76,7 +76,7 @@ const ClienteDialog = ({ open, onOpenChange, cliente, onSaved }) => {
             <input className={inputCls} value={form.indirizzo} onChange={set('indirizzo')} placeholder="Via, numero civico" />
           </Field>
           <Field label="Città">
-            <input className={inputCls} value={form.citta} onChange={set('citta')} placeholder="Bergamo" />
+            <input className={inputCls} value={form.citta} onChange={set('citta')} placeholder="Mestre" />
           </Field>
           <Field label="CAP">
             <input className={inputCls} value={form.cap} onChange={set('cap')} placeholder="24100" />

@@ -21,7 +21,7 @@ import DocumentiPage from './pages/DocumentiPage';
 function App() {
     return (
         <AuthProvider>
-            <Router>
+            <Router basename={import.meta.env.BASE_URL}>
                 <ScrollToTop />
                 <Routes>
                     <Route path="/login" element={<LoginPage />} />

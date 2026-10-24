@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import DemoBanner from '@/demo/DemoBanner';
 import {
   LayoutDashboard,
   CalendarClock,
@@ -119,6 +120,7 @@ const Layout = () => {
 
   return (
     <div className="min-h-[100dvh] bg-background">
+      <DemoBanner />
       {/* Sidebar desktop */}
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col bg-navy md:flex">
         <Logo />
